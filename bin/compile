@@ -85,6 +85,13 @@ echo "-----> Pre-launching Meteor to create packages assets and prevent bundling
 fi
 # </hack>
 
+echo "-----> Installing bower"
+npm install bower -g
+echo "-----> Bower installed!"
+
+echo "-----> Installing bower dependencies"
+HOME=$APP_CHECKOUT_DIR bower install
+
 HOME=$METEOR_DIR $METEOR build --directory $BUNDLE_DEST
 mv $BUNDLE_DEST/bundle "$COMPILE_DIR/app"
 rmdir $BUNDLE_DEST
