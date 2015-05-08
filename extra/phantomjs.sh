@@ -30,4 +30,4 @@ chmod +x $BUILD_DIR/vendor/phantomjs/bin/phantomjs
 echo "-----> exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/phantomjs.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:vendor/phantomjs/bin"' >> $PROFILE_PATH
+echo 'export PATH="$PATH:/app/vendor/phantomjs/bin"' >> $PROFILE_PATH
