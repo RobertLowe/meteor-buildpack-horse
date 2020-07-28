@@ -13,6 +13,9 @@ if [[ -n "$HEROKU_METRICS_URL" ]] && [[ "${DYNO}" != run\.* ]] && [[ -z "$HEROKU
       export NODEJS_PARAMS="${NODEJS_PARAMS} --require $HOME/.meteor/heroku_build/.heroku/heroku-nodejs-plugin"
   fi
 
-fi
+  # TODO: check for DD_CLIENT_TOKEN?
+  if [[ -z "$HEROKU_SKIP_NODE_DD_PLUGIN" ]]; then
+    export NODEJS_PARAMS="${NODEJS_PARAMS} --require $HOME/.meteor/heroku_build/.heroku/dd-init.js"
+  fi 
 
-.heroku/node/bin/node $NODEJS_PARAMS .meteor/heroku_build/app/main.js
+fi

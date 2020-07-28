@@ -73,6 +73,11 @@ install_plugin() {
     mkdir -p "${build_dir}/.heroku/"
     tar -xzf ${plugin} -C "${build_dir}/.heroku/"
   fi
+
+  if [[ -z "$HEROKU_SKIP_NODE_DD_PLUGIN" ]]; then
+    mkdir -p "${build_dir}/.heroku/"
+    echo "require('dd-trace').init()" > "${build_dir}/.heroku/dd-init.js"
+  fi
 }
 
 # Load config vars into environment (from https://devcenter.heroku.com/articles/buildpack-api)
